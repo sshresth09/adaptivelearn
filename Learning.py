@@ -191,7 +191,7 @@ def display_large_sidebar_section(title):
 
 
 # Initialize Streamlit app
-st.set_page_config(page_title="AI-Powered Adaptive Learning Platform", layout="wide")
+st.set_page_config(page_title="ScrollnLearn Learning Platform", layout="wide")
 
 # Custom CSS for better styling
 st.markdown("""
@@ -246,13 +246,13 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 
-st.title(" 👨🏻‍💻 AI-Powered Adaptive Learning Platform")
+st.title(" 👨🏻‍💻 ScrollnLearn Learning Platform")
 
 
 
 # Sidebar for navigation
 st.sidebar.title("Features")
-sections = ["Home","Educational Content Finder", "Lecture Enhancement", "Cutting-Edge Research Sub-Topics", "Language Learning Companion", "AI-BOT","Lets Try Quizzz","Automated Assignment Generator", "Voice Assistant"]
+sections = ["Home","Educational Content Finder", "Lecture Enhancement", "ResearchRadar", "Language Learning Companion", "AI-BOT","Lets Try Quizzz","Automated Assignment Generator", "Voice Assistant"]
 
 section = st.sidebar.radio("Use", sections)
 
@@ -373,27 +373,27 @@ elif section == "Educational Content Finder":
 #         else:
 #             st.error("Please enter assignment text to get feedback.")
 
-elif section == "Cutting-Edge Research Sub-Topics":
-    st.header("🔬 Cutting-Edge Research Sub-Topics")
-    st.write("Discover the latest research sub-topics in your field of interest.")
+elif section == "ResearchRadar":
+    st.header("🔬 ResearchRadar")
+    st.write("Discover the latest research topics in your field of interest.")
 
     topic = st.text_input("Enter a topic:")
-    if st.button("Find Sub-Topics"):
+    if st.button("Find Topics"):
         if topic:
-            # Ask Gemini to return sub-topics related to cutting-edge research on the entered topic
-            query = f"Tell me about the cutting-edge research sub-topics in {topic}"
+            # Ask Gemini to return topics related to cutting-edge research on the entered topic
+            query = f"Tell me about the cutting-edge research topics in {topic}"
             response = get_gemini_response(query)
             content = "".join([chunk.text for chunk in response])
 
             # Display the response
             if content:
-                st.write(f"### Cutting-Edge Research Sub-Topics in {topic}:")
-                sub_topics = content.split("\n")  # Assuming each sub-topic is separated by a newline
+                st.write(f"### ResearchRadar in {topic}:")
+                sub_topics = content.split("\n")  # Assuming each topic is separated by a newline
                 for sub_topic in sub_topics:
                     if sub_topic.strip():
                         st.write(f"- {sub_topic.strip()}")
             else:
-                st.error("No sub-topics found. Please try again.")
+                st.error("No topics found. Please try again.")
         else:
             st.error("Please enter a topic.")
 
