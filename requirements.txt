@@ -1,0 +1,14 @@
+streamlit
+google-api-python-client
+requests
+python-dotenv
+google-auth
+transformers
+speechrecognition
+pyttsx3
+# sqlite3
+# email
+matplotlib
+pandas
+pypdf2
+
