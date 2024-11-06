@@ -63,19 +63,19 @@ def get_gemini_response(question):
     return response
 
 
-def send_test_email(from_email, to_email, subject, body):
-    msg = MIMEText(body)
-    msg['Subject'] = subject
-    msg['From'] = from_email
-    msg['To'] = to_email
+# def send_test_email(from_email, to_email, subject, body):
+#     msg = MIMEText(body)
+#     msg['Subject'] = subject
+#     msg['From'] = from_email
+#     msg['To'] = to_email
     
-    try:
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-            server.login(from_email, "your-email-password")
-            server.send_message(msg)
-        print("Test email sent successfully!")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+#     try:
+#         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+#             server.login(from_email, "your-email-password")
+#             server.send_message(msg)
+#         print("Test email sent successfully!")
+#     except Exception as e:
+#         print(f"An error occurred: {e}")
         
 def generate_quiz_questions(topic, grade):
     query = f"Generate 10 quiz questions for {grade} students on the topic {topic} with 4 options and correct answer"
@@ -252,13 +252,13 @@ st.title(" 👨🏻‍💻 AI-Powered Adaptive Learning Platform")
 
 # Sidebar for navigation
 st.sidebar.title("Features")
-sections = ["Home","Educational Content Finder", "Meeting Reminder", "Lecture Enhancement", "Automated Feedback System", "Language Learning Companion", "AI-BOT","Lets Try Quizzz","Automated Assignment Generator", "Voice Assistant"]
+sections = ["Home","Educational Content Finder", "Lecture Enhancement", "Cutting-Edge Research Sub-Topics", "Language Learning Companion", "AI-BOT","Lets Try Quizzz","Automated Assignment Generator", "Voice Assistant"]
 
 section = st.sidebar.radio("Use", sections)
 
 if section == "Home":
     
-    st.image("Random.png", use_column_width=True, caption="AI-Powered Adaptive Learning Platform")
+    st.image("D:\IIITP\\7thSem\AIAdaptive\AI-Powered-Adaptive-Learning-Platform\Random.png", use_column_width=True, caption="AI-Powered Adaptive Learning Platform")
 
 
 
@@ -319,80 +319,105 @@ elif section == "Educational Content Finder":
         else:
             st.error("Please enter a query.")
 
-elif section == "Meeting Reminder":
-    st.header("📅 Meeting Reminder")
-    st.write("Set a reminder for your meeting.")
-    name = st.text_input("Enter your name:")
-    email = st.text_input("Enter your email:")
-    meeting_description = st.text_area("Enter meeting description:")
-    meeting_time = st.time_input("Choose a time for your meeting:")
-    reminder_time = st.slider("Set reminder minutes before the meeting:", 5, 60, 15)
+# elif section == "Meeting Reminder":
+#     st.header("📅 Meeting Reminder")
+#     st.write("Set a reminder for your meeting.")
+#     name = st.text_input("Enter your name:")
+#     email = st.text_input("Enter your email:")
+#     meeting_description = st.text_area("Enter meeting description:")
+#     meeting_time = st.time_input("Choose a time for your meeting:")
+#     reminder_time = st.slider("Set reminder minutes before the meeting:", 5, 60, 15)
 
-    if st.button("Set Reminder"):
-        if name and email and meeting_description:
-            meeting_datetime = datetime.combine(datetime.today(), meeting_time)
-            reminder_datetime = meeting_datetime - timedelta(minutes=reminder_time)
+#     if st.button("Set Reminder"):
+#         if name and email and meeting_description:
+#             meeting_datetime = datetime.combine(datetime.today(), meeting_time)
+#             reminder_datetime = meeting_datetime - timedelta(minutes=reminder_time)
         
-            subject = "Meeting Reminder"
-            body = (f"Hi {name},\n\nThis is a reminder for your meeting.\n\n"
-                    f"Meeting Time: {meeting_time}\n"
-                    f"Description: {meeting_description}\n\n"
-                    f"You'll receive this reminder {reminder_time} minutes before the meeting.\n\n"
-                    f"Best regards,\nYour Reminder Service")
+#             subject = "Meeting Reminder"
+#             body = (f"Hi {name},\n\nThis is a reminder for your meeting.\n\n"
+#                     f"Meeting Time: {meeting_time}\n"
+#                     f"Description: {meeting_description}\n\n"
+#                     f"You'll receive this reminder {reminder_time} minutes before the meeting.\n\n"
+#                     f"Best regards,\nYour Reminder Service")
         
-            send_test_email(
-                from_email="ja81@gmail.com",
-                to_email="abc.lnm@gmail.com",
-                subject="Test Email",
-                body="This is a test email."
-            ) 
-            st.success(f"Reminder set for {name} at {meeting_time}. You'll receive an email reminder {reminder_time} minutes before.")
-        else:
-            st.error("Please enter your name, email, and meeting description.")
+#             send_test_email(
+#                 from_email="ja81@gmail.com",
+#                 to_email="abc.lnm@gmail.com",
+#                 subject="Test Email",
+#                 body="This is a test email."
+#             ) 
+#             st.success(f"Reminder set for {name} at {meeting_time}. You'll receive an email reminder {reminder_time} minutes before.")
+#         else:
+#             st.error("Please enter your name, email, and meeting description.")
 
-elif section == "Lecture Enhancement":
-    st.header("📝 Lecture Enhancement")
-    st.write("Summarize your lecture notes.")
-    lecture_notes = st.text_area("Enter lecture notes:")
-    summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-    if st.button("Summarize"):
-        if lecture_notes:
-            summary = summarizer(lecture_notes, max_length=150, min_length=30, do_sample=False)[0]['summary_text']
-            st.write("Summary:", summary)
-        else:
-            st.error("Please enter lecture notes to summarize.")
+# elif section == "Lecture Enhancement":
+#     st.header("📝 Lecture Enhancement")
+#     st.write("Summarize your lecture notes.")
+#     lecture_notes = st.text_area("Enter lecture notes:")
+#     summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+#     if st.button("Summarize"):
+#         if lecture_notes:
+#             summary = summarizer(lecture_notes, max_length=150, min_length=30, do_sample=False)[0]['summary_text']
+#             st.write("Summary:", summary)
+#         else:
+#             st.error("Please enter lecture notes to summarize.")
 
-elif section == "Automated Feedback System":
-    st.header("📝 Automated Feedback System")
-    st.write("Get feedback on your assignment.")
-    assignment = st.text_area("Enter assignment text:")
-    if st.button("Get Feedback"):
-        if assignment:
-            feedback = "Great job! Consider expanding your analysis in the third paragraph."
-            st.write("Feedback:", feedback)
-        else:
-            st.error("Please enter assignment text to get feedback.")
+# elif section == "Automated Feedback System":
+#     st.header("📝 Automated Feedback System")
+#     st.write("Get feedback on your assignment.")
+#     assignment = st.text_area("Enter assignment text:")
+#     if st.button("Get Feedback"):
+#         if assignment:
+#             feedback = "Great job! Consider expanding your analysis in the third paragraph."
+#             st.write("Feedback:", feedback)
+#         else:
+#             st.error("Please enter assignment text to get feedback.")
 
-elif section == "Language Learning Companion":
-    st.header("🌐 Language Learning Companion")
-    st.write("Translate your practice sentence.")
-    translator_en_to_fr = pipeline("translation_en_to_fr", model="t5-small")
-    translator_en_to_hi = pipeline("translation_en_to_hi", model="Helsinki-NLP/opus-mt-en-hi")
-    translator_en_to_ml = pipeline("translation_en_to_ml", model="Helsinki-NLP/opus-mt-en-ml")
-    language_input = st.text_input("Practice a sentence:")
-    language = st.selectbox("Select language for translation:", ["French", "Hindi", "Malayalam"])
+elif section == "Cutting-Edge Research Sub-Topics":
+    st.header("🔬 Cutting-Edge Research Sub-Topics")
+    st.write("Discover the latest research sub-topics in your field of interest.")
 
-    if st.button("Get Translation"):
-        if language_input:
-            if language == "French":
-                translation = translator_en_to_fr(language_input, max_length=400)[0]['translation_text']
-            elif language == "Hindi":
-                translation = translator_en_to_hi(language_input, max_length=400)[0]['translation_text']
-            elif language == "Malayalam":
-                translation = translator_en_to_ml(language_input, max_length=400)[0]['translation_text']
-            st.write(f"Translation ({language}):", translation)
+    topic = st.text_input("Enter a topic:")
+    if st.button("Find Sub-Topics"):
+        if topic:
+            # Ask Gemini to return sub-topics related to cutting-edge research on the entered topic
+            query = f"Tell me about the cutting-edge research sub-topics in {topic}"
+            response = get_gemini_response(query)
+            content = "".join([chunk.text for chunk in response])
+
+            # Display the response
+            if content:
+                st.write(f"### Cutting-Edge Research Sub-Topics in {topic}:")
+                sub_topics = content.split("\n")  # Assuming each sub-topic is separated by a newline
+                for sub_topic in sub_topics:
+                    if sub_topic.strip():
+                        st.write(f"- {sub_topic.strip()}")
+            else:
+                st.error("No sub-topics found. Please try again.")
         else:
-            st.error("Please enter a sentence to translate.")
+            st.error("Please enter a topic.")
+
+
+# elif section == "Language Learning Companion":
+#     st.header("🌐 Language Learning Companion")
+#     st.write("Translate your practice sentence.")
+#     translator_en_to_fr = pipeline("translation_en_to_fr", model="t5-small")
+#     translator_en_to_hi = pipeline("translation_en_to_hi", model="Helsinki-NLP/opus-mt-en-hi")
+#     translator_en_to_ml = pipeline("translation_en_to_ml", model="Helsinki-NLP/opus-mt-en-ml")
+#     language_input = st.text_input("Practice a sentence:")
+#     language = st.selectbox("Select language for translation:", ["French", "Hindi", "Malayalam"])
+
+#     if st.button("Get Translation"):
+#         if language_input:
+#             if language == "French":
+#                 translation = translator_en_to_fr(language_input, max_length=400)[0]['translation_text']
+#             elif language == "Hindi":
+#                 translation = translator_en_to_hi(language_input, max_length=400)[0]['translation_text']
+#             elif language == "Malayalam":
+#                 translation = translator_en_to_ml(language_input, max_length=400)[0]['translation_text']
+#             st.write(f"Translation ({language}):", translation)
+#         else:
+#             st.error("Please enter a sentence to translate.")
 
 elif section == "AI-BOT":
     st.header("💬 AI-BOT")
@@ -555,64 +580,6 @@ elif section == "Automated Assignment Generator":
                         
                         # Generate a chart
                         plot_chart(answers_df, "Student PDF Answer Report")
-
-    # if 'quiz_data' in st.session_state:
-    #     st.write("### Your Answers:")
-    #     with st.form("answers_form"):
-    #         for i, q in enumerate(st.session_state['quiz_data']['questions']):
-    #             st.write(f"Q. {q['question']}")
-    #             st.session_state['quiz_data']['user_answers'][i]=st.text_area(f"Your Answer for Q{i+1}")
-    #             # st.session_state['quiz_data'][i]=st.null
-            
-            
-    #         submit_answers = st.form_submit_button("Submit Answers")
-
-    #         if submit_answers:
-    #             # Option to either type answers or upload PDF
-                
-                
-    #                 # for i in enumerate(st.session_state['quiz_data']):
-    #                     # st.session_state['quiz_data'][i]=st.text_area(f"Your Answer for Q{i+1}")
-    #                 # st.session_state['quiz_data']['user_answers'][i]=st.text_area(f"Your Answer for Q{i+1}", key=f"answer_{i}")
-    #                 # Generate a report for typed answers
-    #             st.write("### Typed Answer Report:")
-    #             answers_df = pd.DataFrame({
-    #                 'Question': [q['question'] for q in st.session_state['quiz_data']['questions']],
-    #                 'Student Answer': st.session_state['quiz_data']['user_answers'],
-    #                 'Feedback': ["Pending"] * len(st.session_state['quiz_data']['user_answers'])
-    #             })
-                
-    #             # Generate a chart
-    #             plot_chart(answers_df, "Student Typed Answer Report")
-                
-    #             # elif option == "Upload PDF":
-    #             #     st.write("Upload your PDF answers:")
-    #             #     pdf_file = st.file_uploader("Choose a PDF file", type="pdf")
-                    
-    #             #     if pdf_file is not None:
-    #             #         # Process the PDF file
-    #             #         text = process_pdf(pdf_file)
-    #             #         st.session_state['uploaded_pdf_text'] = text
-    #             #         st.success("PDF uploaded and processed successfully.")
-                        
-    #             #         # Get feedback from LLM
-    #             #         query = f"Check the following answers and provide feedback: {text}"
-    #             #         response = get_gemini_response(query)
-    #             #         feedback = "".join([chunk.text for chunk in response])
-                        
-    #             #         st.write("### Feedback:")
-    #             #         st.write(feedback)
-                        
-    #             #         # Generate report
-    #             #         st.write("### Answer Report:")
-    #             #         answers_df = pd.DataFrame({
-    #             #             'Question': [q['question'] for q in st.session_state['quiz_data']['questions']],
-    #             #             'Student Answer': [text] * len(st.session_state['quiz_data']['questions']),
-    #             #             'Feedback': [feedback] * len(st.session_state['quiz_data']['questions'])
-    #             #         })
-                        
-    #             #         # Generate a chart
-    #             #         plot_chart(answers_df, "Student PDF Answer Report")
 
 elif section == " Voice Assistant":
     st.title("🎤 Voice Assistant")
