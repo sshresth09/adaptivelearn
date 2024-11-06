@@ -4,6 +4,7 @@ requests
 python-dotenv
 google-auth
 transformers
+google-generativeai
 speechrecognition
 pyttsx3
 # sqlite3
