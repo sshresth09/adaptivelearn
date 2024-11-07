@@ -258,7 +258,7 @@ section = st.sidebar.radio("Use", sections)
 
 if section == "Home":
     
-    st.image("D:\IIITP\\7thSem\AIAdaptive\AI-Powered-Adaptive-Learning-Platform\Random.png", use_column_width=True, caption="AI-Powered Adaptive Learning Platform")
+    st.image("Random.png", use_column_width=True, caption="AI-Powered Adaptive Learning Platform")
 
 
 
