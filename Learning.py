@@ -252,7 +252,7 @@ st.title(" 👨🏻‍💻 ScrollnLearn Learning Platform")
 
 # Sidebar for navigation
 st.sidebar.title("Features")
-sections = ["Home","Educational Content Finder", "Lecture Enhancement", "ResearchRadar", "Language Learning Companion", "AI-BOT","Lets Try Quizzz","Automated Assignment Generator", "Voice Assistant"]
+sections = ["Home", "ResearchRadar", "Language Learning Companion", "AI-BOT","Lets Try Quizzz","Automated Assignment Generator", "Voice Assistant"]
 
 section = st.sidebar.radio("Use", sections)
 
@@ -262,62 +262,62 @@ if section == "Home":
 
 
 
-elif section == "Educational Content Finder":
-    st.header("📚 Educational Content Finder")
+# elif section == "Educational Content Finder":
+#     st.header("📚 Educational Content Finder")
 
-    query = st.text_input("Enter your query:")
-    grade = st.selectbox("Select your grade level:", [
-        "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5",
-        "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10",
-        "Grade 11", "Grade 12"
-    ])
+#     query = st.text_input("Enter your query:")
+#     grade = st.selectbox("Select your grade level:", [
+#         "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5",
+#         "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10",
+#         "Grade 11", "Grade 12"
+#     ])
 
-    if st.button("Search"):
-        if query:
-            search_query = f"{query} for {grade}"
-            st.write(f"### Searching YouTube for: {search_query}")
-            videos = fetch_youtube_videos(search_query, YOUTUBE_API_KEY)
-            if isinstance(videos, str):
-                st.error(videos)
-            else:
-                st.write("### YouTube Videos:")
-                for video in videos:
-                    title = video['snippet']['title']
-                    video_id = video['id']['videoId']
-                    video_url = f"https://www.youtube.com/watch?v={video_id}"
-                    thumbnail_url = video['snippet']['thumbnails']['high']['url']
-                    description = video['snippet'].get('description', 'No description available')
+#     if st.button("Search"):
+#         if query:
+#             search_query = f"{query} for {grade}"
+#             st.write(f"### Searching YouTube for: {search_query}")
+#             videos = fetch_youtube_videos(search_query, YOUTUBE_API_KEY)
+#             if isinstance(videos, str):
+#                 st.error(videos)
+#             else:
+#                 st.write("### YouTube Videos:")
+#                 for video in videos:
+#                     title = video['snippet']['title']
+#                     video_id = video['id']['videoId']
+#                     video_url = f"https://www.youtube.com/watch?v={video_id}"
+#                     thumbnail_url = video['snippet']['thumbnails']['high']['url']
+#                     description = video['snippet'].get('description', 'No description available')
 
-                    st.markdown(f"""
-                        <a href="{video_url}" target="_blank">
-                            <img src="{thumbnail_url}" alt="{title}" style="width:120px; height:90px; object-fit:cover;"/>
-                        </a>
-                        Title: <strong>{title}</strong><br>
-                        Description: <strong><span style="font-size:14px;">{description[:150]}...</span> <!-- Truncate description if too long --></strong><br>
+#                     st.markdown(f"""
+#                         <a href="{video_url}" target="_blank">
+#                             <img src="{thumbnail_url}" alt="{title}" style="width:120px; height:90px; object-fit:cover;"/>
+#                         </a>
+#                         Title: <strong>{title}</strong><br>
+#                         Description: <strong><span style="font-size:14px;">{description[:150]}...</span> <!-- Truncate description if too long --></strong><br>
 
-                    """, unsafe_allow_html=True)
-                    st.write("---")
-                    #st.write(f"**Title:** {title}")
-                    #st.write(f"**Link:** [Watch Video]({video_url})")
-                    #st.write("---")
+#                     """, unsafe_allow_html=True)
+#                     st.write("---")
+#                     #st.write(f"**Title:** {title}")
+#                     #st.write(f"**Link:** [Watch Video]({video_url})")
+#                     #st.write("---")
             
-            st.write(f"### Resource Results: {search_query}")
-            google_results = fetch_serper_results(search_query)
-            if isinstance(google_results, str):
-                st.error(google_results)
-            else:
-                st.write("### Resource Results:")
-                for result in google_results:
-                    title = result.get('title', 'No title available')
-                    link = result.get('link', 'No link available')
-                    snippet = result.get('snippet', 'No description available')
+#             st.write(f"### Resource Results: {search_query}")
+#             google_results = fetch_serper_results(search_query)
+#             if isinstance(google_results, str):
+#                 st.error(google_results)
+#             else:
+#                 st.write("### Resource Results:")
+#                 for result in google_results:
+#                     title = result.get('title', 'No title available')
+#                     link = result.get('link', 'No link available')
+#                     snippet = result.get('snippet', 'No description available')
             
-                    st.write(f"**Title:** {title}")
-                    st.write(f"**Link:** [View Resource]({link})")
-                    st.write(f"**Description:** {snippet}")
-                    st.write("---")
-        else:
-            st.error("Please enter a query.")
+#                     st.write(f"**Title:** {title}")
+#                     st.write(f"**Link:** [View Resource]({link})")
+#                     st.write(f"**Description:** {snippet}")
+#                     st.write("---")
+#         else:
+#             st.error("Please enter a query.")
 
 # elif section == "Meeting Reminder":
 #     st.header("📅 Meeting Reminder")
